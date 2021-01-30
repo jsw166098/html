@@ -1,0 +1,15 @@
+# UI 와 API
+
+## User Interface
+* 사용자가 시스템을 제어하기 위해서 사용하는 조작장치
+
+## Application Programming Interface
+
+* 애플리케이션을 만들기 위해서 프로그래밍을 할 때 사용하는 조작장치들
+* 우리가 만들기도 하면서 미리 만들어진 것을 사용하는 것이기도 하다. 
+* 모든 애플리케이션은 api를 프로그래밍(순서적)적으로 사용해서 만들어진다.
+~~~
+// 경고창을 실행하는 조작장치인 함수 alert()
+<input type="butoon" value="Click me" onclick="alert('Hello world')">
+~~~
+

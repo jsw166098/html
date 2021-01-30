@@ -249,3 +249,79 @@
 ~~~
 
 ![img11](./img/img11.png)
+
+---
+
+## 함수
+
+* 코드가 많아짐에 따라 정리할 수 있는 도구 -> 함수, 객체
+* 연속적으로 반복되지 않을 경우 반복문을 사용하기가 여렵다. 
+
+~~~
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+
+    </head>
+    <body>
+        <h1>Function</h1>
+        <h2>Basic</h2>
+        <ul>
+            <script>
+                function two(){
+                    document.write('<li>2-1</li>');
+                    document.write('<li>2-2</li>');
+                }
+                document.write('<li>1</li>');
+                two();
+                document.write('<li>3</li>');
+                two();
+            </script>
+        </ul>
+        <h2>Parameter & Argument</h2>
+        <h2>Return</h2>
+    </body>
+</html>
+~~~
+
+![img12](./img/img12.png)
+
+---
+
+## 객체
+
+* 함수와 변수가 많아짐에 따른 정리정돈
+* 서로 연관된 함수와 연관된 변수를 같은 이름으로 그루핑해서 정리정돈한다. 
+* 객체의 경우 순서 없이 데이터를 저장하는 것이다. 순서 개념이 있는 배열과 다른 것을 확인할 수 있다. 
+* 이름이 있는 정리정돈 상자
+* 객체를 생성할 때 사용되는 기호 -> object literal 
+
+~~~
+//객체 생성
+     var coworkers = {
+                "programmer":"egoing",
+                "designer":'leezche'
+            };
+
+//객체 접근
+            document.write("programmer : "+coworkers.programmer);
+            document.write("designer : "+coworkers.designer);
+
+//객체에 데이터 추가 
+            coworkers.bookkeeper = "duru";
+            document.write("bookkeeper : "+coworkers.bookkeeper+"<br>");
+            coworkers["data scientist"] = "taeho";
+            document.write("data scientist : "+coworkers["data scientist"]+"<br>");
+ 
+~~~
+
+![img13](./img/img13.png)
+
+### 배열
+* 데이터가 많아짐에 따라 서로 연관된 데이터를 순서대로 저장
+~~~
+var coworkers = ['egoing', 'leezche']
+~~~
+
+

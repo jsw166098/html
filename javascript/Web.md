@@ -50,7 +50,7 @@ JavaScript (/ˈdʒɑːvəˌskrɪpt/),[6] often abbreviated as JS, is a programmi
 
 ---
 
-# 2. 리펠토링
+# 2. 리펙토링
 
 * 동작은 그대로 두고 코드의 효율성을 높이며 중복된 코드를 낮추는 코드를 개선하는 작업
 
@@ -246,4 +246,166 @@ if (document.querySelector('#night_day').value === 'night'){
 JavaScript (/ˈdʒɑːvəˌskrɪpt/),[6] often abbreviated as JS, is a programming language that conforms to the ECMAScript specification.[7] JavaScript is high-level, often just-in-time compiled, and multi-paradigm. It has curly-bracket syntax, dynamic typing, prototype-based object-orientation, and first-class functions.
 </body>
 
+~~~
+---
+
+# 5. 함수 활용
+
+* 매개변수 this, self 주의
+
+~~~
+<!doctype html>
+<html>
+    <head>
+        <title>WEB1 - JavaScript</title>
+        <meta charset="utf-8">
+        <script>
+        function nightDayHandler(self){
+            var target = document.querySelector('body')
+            if (self.value === 'night'){
+            target.style.backgroundColor = 'black';
+            target.style.color = 'white';
+            self.value = 'day'
+
+            var alist = document.querySelectorAll('a');
+            var i = 0;
+            while(i <  alist.length){
+                alist[i].style.color = 'powderblue';
+                i = i+1;
+            }
+
+            }else{
+                target.style.backgroundColor = 'white';
+                target.style.color = 'black';
+                self.value ='night'
+
+                var alist = document.querySelectorAll('a');
+                var i = 0;
+                while(i < alist.length){
+                    alist[i].style.color = 'blue';
+                    i = i+1;
+                }
+            }
+        }
+        </script>
+    </head>
+
+    <body>
+        <h1><a href="index.html">WEB</a></h1>
+        <input  type="BUTTON" value="night" onclick="
+            nightDayHandler(this);
+        ">
+        <input  type="BUTTON" value="night" onclick="
+        nightDayHandler(this);
+        ">
+        <ol>
+            <li><a href='1.html'>HTML</a></li>
+            <li><a href='2.html'>CSS</a></li> 
+            <li><a href='3.html'>JavaScript</a></li> 
+        </ol>
+        <h2>JavaScript</h2>
+        <p>
+        JavaScript (/ˈdʒɑːvəˌskrɪpt/),[6] often abbreviated as JS, is a programming language that conforms to the ECMAScript specification.[7] JavaScript is high-level, often just-in-time compiled, and multi-paradigm. It has curly-bracket syntax, dynamic typing, prototype-based object-orientation, and first-class functions.
+        </p>
+        <input  type="BUTTON" value="night" onclick="
+            if (this.value === 'night'){
+            document.querySelector('body').style.backgroundColor = 'black';
+            document.querySelector('body').style.color = 'white';
+            this.value = 'day'
+
+            }else{
+            document.querySelector('body').style.backgroundColor = 'white';
+            document.querySelector('body').style.color = 'black';
+            this.value ='night'
+            }
+        ">
+    </body>
+</html>
+~~~
+
+---
+
+# 6. 객체 활용
+
+* 객체화 적용
+
+~~~
+<!doctype html>
+<html>
+    <head>
+        <title>WEB1 - JavaScript</title>
+        <meta charset="utf-8">
+        <script>
+        var Links = {
+            setColor:function(color){
+                var alist = document.querySelectorAll('a');
+                var i = 0;
+                while(i < alist.length){
+                    alist[i].style.color = color;
+                    i = i+1;
+                }
+            }
+        }
+        var Body = {
+            setColor:function(color){
+                document.querySelector('body').style.color = color;
+            },
+            setBackgroundColor: function(color){
+                document.querySelector('body').style.backgroundColor = color;
+            }
+        }
+        function nightDayHandler(self){
+            var target = document.querySelector('body');
+            if(self.value == 'night'){
+                Body.setBackgroundColor('black');
+                Body.setColor('white');
+                self.value = 'day';
+
+                Links.setColor('powderblue');
+            }else{
+                Body.setBackgroundColor('white');
+                Body.setColor('black');
+                self.value='night';
+
+                Links.setColor('blue');
+            }
+        }
+
+        </script>
+    </head>
+
+    <body>
+        <h1><a href="index.html">WEB</a></h1>
+        <input  type="BUTTON" value="night" onclick="
+            nightDayHandler(this);
+        ">
+        <ol>
+            <li><a href='1.html'>HTML</a></li>
+            <li><a href='2.html'>CSS</a></li> 
+            <li><a href='3.html'>JavaScript</a></li> 
+        </ol>
+        <h2>JavaScript</h2>
+        <p>
+        JavaScript (/ˈdʒɑːvəˌskrɪpt/),[6] often abbreviated as JS, is a programming language that conforms to the ECMAScript specification.[7] JavaScript is high-level, often just-in-time compiled, and multi-paradigm. It has curly-bracket syntax, dynamic typing, prototype-based object-orientation, and first-class functions.
+        </p>
+    </body>
+</html>
+~~~
+
+---
+
+# 7. 파일로 쪼개기
+
+* 서로 연관된 코드들을 파일로 묶어서 그루핑한다.
+* 유지보수가 용이하다. 색깔을 바꿀 수 color.js 에서만 바꾸면 된다. 새로운 웹 페이지를 만들었을 경우 일일이 복사할 필요없이 참조하기만 하면 된다. 
+
+* 새로운 웹 페이지를 만들었을 경우 일일이 복사할 필요없이 참조하기만 하면 된다. 가독성이 좋아지고 코드가 명확해지다. 코드의 의미를 파일의 이름을 통해 파악할 수 있다.
+
+* js 파일에 script 태그의 내용들을 붙여 넣은 후 소스 코드를 스타일 태그 속성을 통해 참조하도록 한다. 색깔을 바꿀 수 color.js 에서만 바꾸면 된다. 
+
+* js 포함한 파일을 또 접속해야 하기 때문에 웹브라우저에게 단점이 될 수 있다. 하지만 캐시로 인해 즉 처음 받은 파일은 저장을 해놓기 때문에 더 효율적으로 페이지를 열 수 있다. 
+
+
+~~~
+    <script src="colors.js"></script>
 ~~~
